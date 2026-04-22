@@ -34,7 +34,3 @@ body {
     box-sizing: border-box;
     margin: -1px;
 }
-
-.tile:hover {
-    background-color: yellow;
-}

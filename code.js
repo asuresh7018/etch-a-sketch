@@ -14,12 +14,16 @@ function clearGrid() {
 function spawnRow(width) {
     const row = document.createElement("div");
     row.className = "row";
-    const tile = document.createElement("div");
-    tile.className = "tile";
     canvas.appendChild(row);
         for (let i = 0; i < width; i++) {
-        row.appendChild(tile.cloneNode(true));
+        row.appendChild(spawnTile());
         }
+}
+
+function spawnTile() {
+    const tile = document.createElement("div");
+    tile.className = "tile";
+    return tile;
 }
 
 function getNewSize() {
@@ -37,9 +41,25 @@ function getNewSize() {
     createGrid(gridWidth);
 }
 
+function changeColor(tile) {
+    let r,g,b;
+    r = Math.floor(Math.random()*255);
+    g = Math.floor(Math.random()*255);
+    b = Math.floor(Math.random()*255);
+    tile.style.backgroundColor = `rgb(${r},${g},${b})`;
+}
+
 function createGrid(width) {
     for (let i = 0; i < width; i++) {
         spawnRow(width);
     }
+    const tiles = document.querySelectorAll(".tile");
+     tiles.forEach((tile) => {
+        tile.addEventListener("mouseover", (event) => {
+            changeColor(event.target); 
+        });
+        }
+    )
 }
+
 
