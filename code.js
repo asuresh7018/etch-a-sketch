@@ -1,42 +1,45 @@
-const row = document.createElement("div");
-row.className = "row";
-const tile = document.createElement("tile");
-tile.className = "tile";
 const canvas = document.querySelector("#canvas");
+let gridWidth;
 
 function clearGrid() {
-    canvas.childNodes.forEach((node) => {
-        canvas.removeChild(node);
-    });
-}
-
-function createGrid(width) {
-    // Create a single row
-        canvas.appendChild(row.cloneNode(true));
-        for (let i = 0; i < width-1; i++) {
-        row.appendChild(tile.cloneNode(true));
-        }
-
-    // Add tiles to row
-    for (let i = 0; i < width; i++) {
-        row.appendChild(tile.cloneNode(true));
+    for (let i=0; i < canvas.childNodes.length; i++) {
+        canvas.removeChild(canvas.firstChild);
     }
-
-    // Add rows to canvas
-    for (let i = 0; i < width; i++) {
-        canvas.appendChild(row.cloneNode(true));
+    // Unknown why it doesn't clear everything with just above function, so use recursion
+    if (canvas.childNodes.length > 0) {
+        clearGrid();
     }
 }
 
 function spawnRow(width) {
-    const newRow = row.cloneNode(true)
-    canvas.appendChild(newRow);
+    const row = document.createElement("div");
+    row.className = "row";
+    const tile = document.createElement("div");
+    tile.className = "tile";
+    canvas.appendChild(row);
         for (let i = 0; i < width; i++) {
-        newRow.appendChild(tile.cloneNode(true));
+        row.appendChild(tile.cloneNode(true));
         }
 }
 
-clearGrid();
-for (let i = 0; i < 16; i++) {
-    spawnRow(16);
+function getNewSize() {
+    while (true) {
+        gridWidth = prompt("Enter the new size for the canvas. (Between 1 and 100)");
+        gridWidth = Number(gridWidth);
+        if (!(Number.isInteger(gridWidth))) {
+            continue;
+        }
+        if (gridWidth > 0 && gridWidth <= 100) {
+            break;
+        }
+    }
+    clearGrid();
+    createGrid(gridWidth);
 }
+
+function createGrid(width) {
+    for (let i = 0; i < width; i++) {
+        spawnRow(width);
+    }
+}
+

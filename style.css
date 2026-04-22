@@ -4,6 +4,7 @@ body {
     flex: 0 0 auto;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 #canvas {
@@ -32,4 +33,8 @@ body {
     border: 1px solid black;
     box-sizing: border-box;
     margin: -1px;
+}
+
+.tile:hover {
+    background-color: yellow;
 }
