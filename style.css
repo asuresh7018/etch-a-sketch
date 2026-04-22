@@ -20,7 +20,6 @@ body {
 .row {
     width: 100%;
     height: 100%;
-    border: 1px solid black;
     display: flex;
     flex: 0 1 auto;
     justify-content: center;
@@ -31,5 +30,6 @@ body {
     height: 100%;
     width: 100%;
     border: 1px solid black;
-    margin: -0.5px;
+    box-sizing: border-box;
+    margin: -1px;
 }
