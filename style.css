@@ -30,7 +30,6 @@ body {
 .tile {
     height: 100%;
     width: 100%;
-    border: 1px solid black;
     box-sizing: border-box;
-    margin: -1px;
+    opacity: 0.0;
 }

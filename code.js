@@ -23,6 +23,7 @@ function spawnRow(width) {
 function spawnTile() {
     const tile = document.createElement("div");
     tile.className = "tile";
+    tile.opacity = 0.0;
     return tile;
 }
 
@@ -49,6 +50,12 @@ function changeColor(tile) {
     tile.style.backgroundColor = `rgb(${r},${g},${b})`;
 }
 
+function raiseOpacity(tile) {
+    if (Number(tile.style.opacity) < 1) {
+        tile.style.opacity = Number(tile.style.opacity) + 0.1;
+    }
+}
+
 function createGrid(width) {
     for (let i = 0; i < width; i++) {
         spawnRow(width);
@@ -56,7 +63,8 @@ function createGrid(width) {
     const tiles = document.querySelectorAll(".tile");
      tiles.forEach((tile) => {
         tile.addEventListener("mouseover", (event) => {
-            changeColor(event.target); 
+            changeColor(event.target);
+            raiseOpacity(event.target); 
         });
         }
     )
